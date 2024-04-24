@@ -54,6 +54,7 @@ public class VariableApp {
 		System.out.println("올해는 "+2+0+2+4+" 년입니다.");
 		System.out.println("나는 "+1+9+9+5+" 돼지띠입니다.");
 		System.out.println("===================================");
+		String name=null;
 		int hour = 12;
 		int minute = 24;
 		System.out.println(hour+"시간" + minute +"분");
@@ -71,5 +72,6 @@ public class VariableApp {
 		//변수 값이 저장되어 있지 않은 상태에서 변수 사용할 경우 에러 발생 ex: int count   ("count ="+count);
 		//변수에 저장 할 수 없는 리터럴(값)을 저장 시킬 경우 에러 발생
 		//=> int count=10.0;
+		
 	}
 }

@@ -35,7 +35,7 @@ public class DataTypeApp {
 		int a3=2147483647; // 4Byte : -2147483648~2147483647
 		long a4=2147483647; //8Byte
 		System.out.println("===================================");
-		
+		System.out.println("(a3 ="+a3);
 		//실수형(DoubleType) : 소숫점이 있는 숫자값 - 실수값
 		//=> Java 언어는 정수값을 기본적으로 8Byte(바이트) 로 표현 - 부동소숫점 방식으로 표현
 		System.out.println("<<실수형(DoubleType)>>");
@@ -68,7 +68,7 @@ public class DataTypeApp {
 		System.out.println("문자값 = "+'\'');
 		System.out.println("문자값 = "+'\\');
 		
-		//문자값을 표현하기 위한 자료형 - char(2Byte)
+		//문자값을 표현하기 위한 자료형 - char(2Byte) 사용
 		char c1='A';
 		char c2=65; //문자변수에는 문자값 대신 약속된 정수값 저장
 		char c3='a'-32; //문자값에 대한 연산 가능
