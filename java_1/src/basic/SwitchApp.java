@@ -17,7 +17,7 @@ package basic;
 
 public class SwitchApp {
 	public static void main(String[] args) {
-	 int choice=3; // 리터럴 또는 상수 사용
+	 int choice=2; // 리터럴 또는 상수 사용
 	 
 	 switch (choice) {
 	case 1:
@@ -38,7 +38,7 @@ public class SwitchApp {
 		System.out.println("금성으로 이동합니다");
 	case 3:
 		System.out.println("화성으로 이동합니다");
-		break;
+		//break;
 	 default:
 		 System.out.println("지구로 이동합니다.");
 	 }
@@ -67,11 +67,11 @@ public class SwitchApp {
 		 
 		 System.out.println("결과"+jumsu+"점  = "+grade+"학점");
 	 } else {
-		 System.out.println("에러" 0~ 100 범위 벗어난 비정상적인 점수.");
+		 //System.out.println("에러" 0 ~ 100 범위 벗어난 비정상적인 점수.");
 	 }
 	 System.out.println("=================================================");
-	 string kor="둘";
-	 string eng="";
+	 String kor="둘";
+	 String eng="";
 	 
 	 switch (kor) {
 	case "하나": eng="One"; break;

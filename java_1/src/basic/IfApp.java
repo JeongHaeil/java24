@@ -4,21 +4,23 @@ package basic;
 // => 선택문(if, switch) : 스레드를 명령해서 선택 실행 
 // => 반복문(for, while) : 명령을 위에서 아래로 진행을하되 반복적으로 아래에서 위로 한번더 명령 실행
 // => 기타제어문(break, continue, retrun) : 기타등등
+// - 위에서부터 아래로 명령 실행
 
-
-// if : 조건식에 의해 명령을 선택실행하기 위한 선택문을 작성하는 키워드
+// if : 조건식에 의해 명령을 선택실행하기 위한 명령문을 작성하는 키워드
 
 // 형식-1) if(조건식) {명령; 명령;...} 명령이 1개인경우 블록생성 x
 // => 조건식의 결과값이 [true]인 경우 블럭 내부에 작성된 명령들을 실행
-// => 블럭 내부에 작성된 명령이 하나인 경우
+// => 블럭 내부에 작성된 명령이 하나인 경우 블럭 기호 생략 가능
 
 // 형식-2) if(조건식) { 명령;.. 명령;...} else {명령;... 명령;...}
 // => 조건식의 결과값을 구분하여 명령을 선택 실행
 
 // 형식-3) if(조건식) { 명령;.. 명령;...} else if {명령;... 명령;...}
-// => else if {명령;... 명령;...} [else {명령;....명령;...}]
+// =>       else if {명령;... 명령;...} [else {명령;....명령;...}]
+
 // => 다수의 조건식에 작성하여 조건식이 참인 블럭 내부의 명령을 선택 실행
 // => 모든 조건식이 거짓인 경우 else 블럭의 명령 실행 -else 생략 가능
+
 public class IfApp {
 	public static void main(String[] args) {
 		int su=60;
@@ -41,6 +43,7 @@ public class IfApp {
 		System.out.println("=================================================");
 		//변수값을 홀수와 짝수로 구분하여 출력하는 프로그램
 		int num=10;
+		
 		if(num % 2 != 0) {
 			System.out.println(num+"= 홀수");
 		} else {
@@ -52,11 +55,10 @@ public class IfApp {
 		//변수값을 영문자 또는 비영문자로 구분하여 출력하는 프로그램
 		if(mun >= 'A' && mun <= 'Z' || mun >= 'a' && mun <= 'z') {
 			System.out.println("결과"+mun+" = 영문자");
-			}
-		else {
+			} else {
 			System.out.println("결과"+mun+" = 비영문자");
+			}
 		
-		}
 		System.out.println("=================================================");
 		boolean bool=false;  //boolean 변수 많이 사용함 ! 연산자 사용도함
 		//조건식 대신 논리값을 저장한 변수를 사용하여 명령 선택 실행
@@ -85,9 +87,10 @@ public class IfApp {
 				grade="D";
 			} else {
 				grade="F";
-			} System.out.println("출력");
-	
-		
+			} 
+			System.out.println("출력");
+		} else { System.out.println("합격");
+		 
+		}
 	}
-}
 }
