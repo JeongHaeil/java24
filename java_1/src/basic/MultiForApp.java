@@ -12,15 +12,16 @@ public class MultiForApp {
 
 		System.out.println("이동방법 = " + count);
 		System.out.println("===============================================================");
-		// ★
-		/*
-		 * 
-		 * for(int j=1;j<=4;j++) { //행 을 처리하기 위한 반복문 for(int i=1;i<10;i++) { //열 을 처리하기
-		 * 위한 반복문 System.out.print("★"); } System.out.println(); } System.out.println(
-		 * "==============================================================="); //구구단
-		 * for(int i=1;i<=9;i++) { for(int j=2;j<=9;j++) { System.out.print(j+"*"+i+ "="
-		 * +(j*i)+" \t"); //\t 탭기능 } System.out.println(); }
-		 * 
+
+		
+		/*  
+		  for(int j=1;j<=4;j++) { //행 을 처리하기 위한 반복문 for(int i=1;i<10;i++) { //열 을 처리하기
+		  위한 반복문 System.out.print("★"); } System.out.println(); } System.out.println(
+		 System.out.println("==============================================================="); //구구단
+		 for(int i=1;i<=9;i++) 
+		 { for(int j=2;j<=9;j++) 
+		 { System.out.print(j+"*"+i+ "="+(j*i)+" \t"); //\t 탭기능 } System.out.println(); }
+		 
 		 */
 		System.out.println("===============================================================");
 

@@ -113,10 +113,10 @@ public class ForApp {
 		// 밖에 저장된 변수값 i 는 안사라지며 1이 아닌 첫번째 연산한 값 저장
 		int i=1; //실행시 변수 5
 		for(;i<=4;i++) {
-			System.out.println(i+"\t");
+			System.out.println(i);
 		}
 		for(;i>=1;i--) {
-			System.out.print(i+"\t");
+			System.out.print(i);
 		}
 		System.out.println("===============================================================");
 		
