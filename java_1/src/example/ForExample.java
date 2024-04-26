@@ -1,6 +1,7 @@
 package example;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import javax.swing.plaf.synth.SynthSliderUI;
 
 public class ForExample {
 	public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class ForExample {
 		// ex) 1 3 5 7 9
 		for (int i = 1; i <= 9; i++) {
 			if (i % 2 == 1) {
-
+				//for(int i =1;i<=9;i+=2)
 				System.out.println("홀수값 = " + i);
 			}
 
@@ -49,7 +50,12 @@ public class ForExample {
 		// 7 * 8 = 56
 		// 7 * 9 = 63
 
-		for (int i = 1; i <= 7; i++)
+		for (int i = 7; i <= 7; i++) {
+			for(int j=1;j<=9;j++) {
+				System.out.println(i+"*"+j+ "="+(j*i));
+			}
+				System.out.println();
+		}
 
 			System.out.println("=========================================");
 		// 5!의 결과값을 출력하세요.(5! = 5 * 4 * 3 * 2 * 1)
@@ -70,10 +76,13 @@ public class ForExample {
 		//변수 하나 선언해서 값이 0부터 시작해서 하나씩 증가하는데 7되면은 엔터 줄바꿈
 		int begin = 36, end = 57, cnt=0;
 		for (; begin <= end; begin++) {
-			if(begin < 7) {
-			}
-			System.out.print(begin);
+			if(cnt== 7) {
+				System.out.println("");
+				cnt=0;
+			}	
+				cnt++;
+				System.out.print(begin+"\t");
 		}
-	
+				
 	}
 }

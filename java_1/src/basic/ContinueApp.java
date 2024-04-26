@@ -9,7 +9,7 @@ public class ContinueApp {
 	public static void main(String[] args) {
 		for(int i=1;i<=5;i++) {
 			if(i == 3) continue;
-			System.out.println("i ="+i);
+			System.out.println("i = "+i);
 		}
 		
 		System.out.println("======================================================");
@@ -17,8 +17,8 @@ public class ContinueApp {
 		for(int i=1;i<=5;i++) {
 			for(int j=1;j<=5;j++) {
 				//continue 라벨명 : 라벨명으로 지정된 반복문을 다시 실행
-				if(j == 3)  continue loop;
-				System.out.println("i =" +i+", j ="+j);
+				if(j == 3)  continue loop; //컨티뉴 뒤에 루프를사용하면 브레이커랑 같은역할한다
+				System.out.println("i = " +i+", j = "+j);
 			}
 		}
 		
