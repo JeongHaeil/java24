@@ -2,6 +2,8 @@ package basic;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 
+//array.length << 요소의 갯수
+
 //				기본형 : 값을 표현하기 위한 자료형 - byte,short,int,long,char,float,double,boolean
 //Java 자료형 : 참조형 : 특정 대상을 표현하기 위한 자료형 - 배열(Array), 클래스(Class),인터페이스(Interface),열거형				
 

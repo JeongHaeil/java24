@@ -8,7 +8,7 @@ public class DoubleArrayApp {
 		//형식) 자료형[][] 참조변수=new 자료형[행갯수][열갯수];
 		// => 행갯수 : 2차원 배열에 저장될 수 있는 1차원 배열의 갯수
 		// => 열갯수 : 2차원 배열에 저장된 1차원 배열의 요소 갯수
-		int[][] num=new int[2][3];
+		int[][] num=new int[2][3]; //정수값을 저장할수이쓴 2행 3열
 		System.out.println("numArray="+num);
 		System.out.println("numArray[0]="+num[0]);
 		System.out.println("numArray[1]="+num[1]);
