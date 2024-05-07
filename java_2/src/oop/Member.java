@@ -32,6 +32,7 @@ public class Member {
 	// => 생성자를 작성하면 매개변수가 없는 기본 생성자는 미제공
 	// => 필드에 원하는 초기값이 저장된 객체를 생성하기 위한 생정자 작성
 	//형식) 접근제한자 클래스명(자료형 변수명, 자료형 변수명,...){명령; 명령;...}	
+	
 	// => 반환형을 작성하지 않으며 생성자 이름은 반드시 클래스 이름과 동일하게 작성
 	// => 메소드 오버로딩 사용해 다수의 생성자 작성
 	// => 일반적으로 생성자에서는 매개변수로 전달받은 값은 필드의 초기값으로 저장
@@ -41,11 +42,12 @@ public class Member {
 	// => 기본생성자를 작성하지 않으면 클래스 상속시 문제 발생 될수있으며 기본생성자를 생성
 	// 이클립스 기능을 사용하여 기본 생성자 자동 작성가능 - Crtl + Space
 	public Member() {
+		
 		//this 키워드를 사용하여 매개변수가있는 생성자를 호출하여 필드 초기화 처리
 		//형식) this(값,값, ...)
 		//=> 생성자에 this ㅣ워드로 다른 생성자를 호출하는 명령 
 		//=> this 키워드로 생성자를 호출하는 명령은 무조건 생성자의 첫번째 명령으로 작성
-		this("NoId","NoName","NoEmail");
+		//this("NoId","NoName","NoEmail");
 	}
 	
 	
@@ -62,8 +64,16 @@ public class Member {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		
 	}
 	
+
+	public Member(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
 
 	//메소드 : 명령을 실행하여 표현대상의 행위 구현하기 위한 클래스 요소
 	public String getId() {

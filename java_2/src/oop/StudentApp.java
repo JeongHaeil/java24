@@ -39,6 +39,7 @@ public class StudentApp {
 		//반복문을 사용하여 배열 요소에 저장된 모든 객체를 참조해 메소드 호출 가능 - 일괄처리
 		//length  첨자
 		//=> 배열 요소에 [null] 저장이 된 경우 메소드를 호출 할 경우 nullPointerException 발생
+		 * 
 		//nullPointerException : 참조변수에 [null]이 저장된 상태에서 메소드르 호출할 경우 참조할 객체가없기때문에 발생되는 예외
 		for(int i=0;i<students.length;i++) {
 			//nullPointerException 발생을 방지하기 위한 선택문

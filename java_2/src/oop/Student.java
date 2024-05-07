@@ -1,9 +1,10 @@
 package oop;
 //static : 객체가 아닌 클래스로 필드 또는 메소드에 접근하여 사용하기 위한 키워드(제한자)
 // => 클래스(내부 클래스), 필드, 메소드 작성시 사용하는 제한자
+
 // 제한자 : 특별한 기능(제한)을 제공하는 키워드
 //=> Access Modifier(private, package, protected, public), static, final, abstract
-//
+
 
 
 //학생성적(학번, 이름, 국어, 영어, 총점) 를 저장하기 위한 클래스
@@ -21,7 +22,7 @@ public class Student {
 	//=> 객체 생성전에 클래스에 하나만 만들어지는 필드
 	//=> 정적 필드는 직접 값을 저장하여 초기화 처리 - 생성자를 사용하여 초기화 미처리
 	//=> 클래스로 생성된 모든 객체는 정적 필드 사용
-	private static int total=0;
+	private static int total;
 	
 	
 	public Student() {
@@ -42,6 +43,7 @@ public class Student {
 		//=> 총점을 계산하는 메소드 호출 가능 -생성자에서도 다른 메소드 호출 가능
 		//tot=kor+eng;
 		calcTot();
+		
 	}
 
 
