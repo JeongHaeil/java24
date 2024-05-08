@@ -1,0 +1,44 @@
+package xyz.itwill.enumerate;
+
+public class InterfaceApp {
+	public static void main(String[] args) {
+		//인터페이스에 작성된 상수필드 출력 - 필드에 저장된 값 출력
+		System.out.println("삽입(InterfaceOne.INSERT) = "+InterfaceOne.INSERT);
+		System.out.println("변경(InterfaceOne.UPDATE) = "+InterfaceOne.UPDATE);
+		System.out.println("삭제(InterfaceOne.DELETE) = "+InterfaceOne.DELETE);
+		System.out.println("검색(InterfaceOne.SELECT) = "+InterfaceOne.SELLCT);
+		
+		System.out.println("================================================================");
+		
+		System.out.println("삽입(InterfaceTwo.ADD) = "+InterfaceTwo.ADD);
+		System.out.println("변경(InterfaceTwo.MODIFY) = "+InterfaceTwo.MODIFY);
+		System.out.println("삭제(InterfaceTwo.REMOVE) = "+InterfaceTwo.REMOVE);
+		System.out.println("검색(InterfaceTwo.SEARCH) = "+InterfaceTwo.SEARCH);
+		
+		System.out.println("================================================================");
+		//인터페이스로 변수를 생성하여 상수필드값 저장 불가능
+		//InterfaceOne choice=InterfaceOne.INSERT; //에러발생
+		//상수필드의 자료형과 동일한 자료형으로 변수를 생성해야만 상수필드값 저장 가능
+		int choice=InterfaceOne.INSERT;
+		System.out.println(choice);
+		
+		System.out.println("================================================================");
+		
+		switch(choice) {
+		case InterfaceOne.INSERT:
+			System.out.println("# 학생정보를 삽입합니다.");
+			break;
+		case InterfaceOne.UPDATE:
+			System.out.println("# 학생정보를 변경합니다.");
+			break;
+		case InterfaceOne.DELETE:
+			System.out.println("# 학생정보를 삭제합니다.");
+			break;
+		case InterfaceOne.SELLCT:
+			System.out.println("# 학생정보를 검색합니다.");
+			break;
+		}
+		
+		
+	}
+}
