@@ -1,5 +1,7 @@
 package xyz.itwill.nested;
 
+import javax.print.DocFlavor.INPUT_STREAM;
+
 //람다 표현식 : 익명클래스로 객체를 보다 쉽게 생성하기 위해 만들어진 표현식
 //=>주의사항) 반드시 함수형 인터페이스로만 람다표현식 사용 가능
 
@@ -51,6 +53,7 @@ public class CalculateApp {
 		//Calculate calculate = (num1,num2) -> {return num1+num2;};
 		Calculate calculate = (num1,num2) -> num1+num2;
 		System.out.println(calculate.sum(40, 50));
+		
 		
 		
 		
