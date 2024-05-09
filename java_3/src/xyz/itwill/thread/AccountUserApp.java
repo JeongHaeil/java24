@@ -11,6 +11,9 @@ public class AccountUserApp {
 		AccountUser userTwo=new AccountUser(account, "임꺽정");
 		AccountUser userThree=new AccountUser(account, "전우치");
 		
+		//사용자(AccountUser 객체) 로부터 은행계좌(Account 객체) 를 제공받아 입금처리(메소드호출)
+		//단일 스레드(main 스레드)를 이용해 객체를 참조해 메소드 호출
+		//단일스레드 사용하므로 동시 입금 처리 불가능
 		userOne.getAccount().disposit(userOne.getUsername(), 5000);
 		userTwo.getAccount().disposit(userTwo.getUsername(), 5000);
 		userThree.getAccount().disposit(userThree.getUsername(), 5000);
