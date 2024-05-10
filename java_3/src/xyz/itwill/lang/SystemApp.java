@@ -27,7 +27,7 @@ public class SystemApp {
 		System.out.println("정수값 입력 >>");
 		
 		int num=scanner.nextInt();
-	
+		scanner.close();
 		if(num == 0) {
 			System.out.println("프로그램 종료");
 			//System.exit(int status) : 프로그램의 모든 스레드를 소멸시켜 프로그램을 종료하는 메소드
