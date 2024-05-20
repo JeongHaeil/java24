@@ -2,7 +2,7 @@ package xyz.itwill.util;
 
 import java.util.Date;
 
-<<<<<<< HEAD
+
 //Data 클래스 : 날짜와 시간을 저장한 객체를 생성하기 위한 클래스
 
 public class DateApp {
@@ -60,7 +60,7 @@ public class DateApp {
 		
 	}
 }
-=======
+
 //Date 클래스 : 날짜와 시간이 저장된  객체를 생성하기 위한 클래스
 public class DateApp {
 	@SuppressWarnings("deprecation")

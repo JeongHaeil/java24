@@ -35,7 +35,7 @@ public class EventInnerHandleApp extends Frame {
 
 }
 
-public class EventInnerHandleApp implements ActionListener {
+public class EventInnerApp implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

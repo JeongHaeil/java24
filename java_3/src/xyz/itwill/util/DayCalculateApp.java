@@ -1,6 +1,6 @@
 package xyz.itwill.util;
 
-<<<<<<< HEAD
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -69,4 +69,4 @@ public class DayCalculateApp {
 	         
 	    } 
 	}
->>>>>>> branch 'main' of https://github.com/JeongHaeil/java24.git
+

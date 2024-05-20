@@ -2,7 +2,7 @@ package xyz.itwill.util;
 
 import java.util.Calendar;
 
-<<<<<<< HEAD
+
 //현재 년월에 대한 달력출력
 public class CurrentCalendarApp {
 	public static void main(String[] args) {

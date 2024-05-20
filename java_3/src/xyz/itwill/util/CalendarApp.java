@@ -2,7 +2,7 @@ package xyz.itwill.util;
 
 import java.util.Calendar;
 
-<<<<<<< HEAD
+
 //Calendar 클래스 : 날짜와 시간을 저장한 객체를 생성하기위한 클래스
 // => 날짜와 시간외에 부가적인 정보들이 Calendar 객체에 저장되어 메소드 사용
 public class CalendarApp {
