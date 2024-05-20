@@ -33,7 +33,7 @@ public class SystemApp {
 			//System.exit(int status) : 프로그램의 모든 스레드를 소멸시켜 프로그램을 종료하는 메소드
 			//System.exit(0) : 메모리정리안하고 종료
 			//System.exit(1) : 메모리정리하고 종료
-			System.exit(0);
+			System.exit(0); //:프로그램 모든 스레드를 종료
 		}
 		//System.gc(); : 메모리를 청소하는 프로그램을 실행하는 정적메소
 		System.gc();
