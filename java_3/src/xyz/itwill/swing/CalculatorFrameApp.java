@@ -223,7 +223,7 @@ public class CalculatorFrameApp extends JFrame implements ActionListener {
 		// => JButton 컴퍼넌트 버튼을 눌러 연산식을 완성하여 필드에 저장
 		operation += eventSource.getText();
 		// 연산결과를 JLable 컴퍼넌트를 사용하여 출려처리
-		label.setText(re);
+		label.setText();
 		// JLael 컴퍼넌트 출력값을 operation 필드값으로 변경하여 출력
 		label.setText(operation);
 
