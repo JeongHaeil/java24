@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.CancellationException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -102,7 +103,7 @@ public class PenguinGameApp extends JFrame {
 		isPenguinAlive=true;
 		
 		new PenguinAnimationThread().start();
-		
+		new CreatStoneThreadd().start();
 	
 	}
 	

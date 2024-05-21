@@ -98,11 +98,22 @@ public class WindowBuilderApp extends JFrame implements ActionListener {
 		textField.setFont(new Font("굴림체", Font.BOLD, 20));
 		contentPane.add(textField, BorderLayout.SOUTH);
 		textField.setColumns(10);
+		
+		
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Object envenSource=e.getSource();
+		if(envenSource == redButton) {
+			textArea.setForeground(Color.red);
+		}else if(envenSource==greenButton) {
+			textArea.setForeground(Color.green);
+		}else if(envenSource == blueButton) {
+			textArea.setForeground(Color.blue);
+			
+		}
 		
 		
 		
