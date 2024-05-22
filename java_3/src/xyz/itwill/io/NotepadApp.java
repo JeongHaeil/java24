@@ -8,10 +8,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -116,6 +119,7 @@ public class NotepadApp extends JFrame {
 				//JFileChooser.showOpenDialog : 열기 관련 파일 다이얼로그
 				//화면에 출력하는 메소드 -[열기] 또는 [취소] 버튼선택에 따라 정수값 반환
 				int option=fileChooser.showOpenDialog(NotepadApp.this);
+				int cl=fileChooser.showSaveDialog(NotepadApp.this);
 				
 				if(option == JFileChooser.APPROVE_OPTION) {//파일선택후 [열기] 버튼 누른 경우
 					//JFileChooser.getSelectedFile : 선택한 파일의 경로가 저장된 File 객체를 반환
@@ -150,6 +154,14 @@ public class NotepadApp extends JFrame {
 					return;
 				}
 			}else if(eventSource == save) {
+				try {
+					 BufferedWriter writer=new BufferedWriter(new FileWriter(file));
+				}catch( NullPointerException  exception) {
+						JOptionPane.showMessageDialog(null, "파일저장");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
 				
 			}else if(eventSource == exit) {
 				System.exit(0);
