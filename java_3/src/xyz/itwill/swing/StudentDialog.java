@@ -166,12 +166,7 @@ public class StudentDialog extends JDialog {
 				JButton cancelButton = new JButton("취소");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//JTextField 컴퍼넌트의 입력값 초기화
-						numTF.setText("");
-						nameTF.setText("");
-						phoneTF.setText("");
-						//JDialog 컨테이너 숨김 처리
-						setVisible(false);
+					init();
 						
 					}
 				});
@@ -179,8 +174,21 @@ public class StudentDialog extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			
+			
 		}
+		
+	}
+	
+	//컴퍼넌트를 초기화 처리하고 숨김처리하는 메소드
+	private void init() {
+		numTF.setText("");
+		nameTF.setText("");
+		phoneTF.setText("");
+		//JDialog 컨테이너 숨김 처리
+		setVisible(false);
 		
 	}
 
 }
+

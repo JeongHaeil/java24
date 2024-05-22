@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class ConsoleCalculateApp {
 	
 	public static void main(String[] args) {
-<<<<<<< HEAD
+
 		/*
 		Scanner sc=new Scanner(System.in);
 		
@@ -118,27 +118,7 @@ public class ConsoleCalculateApp {
 		System.out.println("프로그램에 오류 발생");
 	}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-=======
-		Scanner sc=new Scanner(System.in);
+
 		
 		System.out.println("첫번째 숫자를 입력하세요.");
 		int num1=sc.nextInt();
@@ -173,7 +153,7 @@ public class ConsoleCalculateApp {
 		System.out.println("결과 = "+result);
 		
 		System.out.println();
->>>>>>> branch 'main' of https://github.com/JeongHaeil/java24.git
+
 		
 		
 

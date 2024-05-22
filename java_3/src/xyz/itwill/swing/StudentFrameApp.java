@@ -15,6 +15,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class StudentFrameApp extends JFrame {
 
@@ -42,6 +43,8 @@ public class StudentFrameApp extends JFrame {
 	 * Create the frame.
 	 */
 	public StudentFrameApp() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(StudentFrameApp.class.getResource("/images/back.jpg")));
+		setTitle("학생관리프로그램");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(700, 200, 500, 400);
 		contentPane = new JPanel();
