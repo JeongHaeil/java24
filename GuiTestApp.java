@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -16,14 +15,18 @@ import java.awt.Color;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JTextPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
-import javax.swing.JComboBox;
 
 public class GuiTestApp extends JFrame {
 
@@ -31,6 +34,8 @@ public class GuiTestApp extends JFrame {
     private JComboBox<Integer> monthCombo;
     private JComboBox<Integer> yearCombo;
     private JTextArea day;
+    private JTextPane textPane;
+    private JTextArea textArea; // 메인 JTextArea를 클래스 변수로 선언
 
     /**
      * Launch the application.
@@ -93,15 +98,33 @@ public class GuiTestApp extends JFrame {
         tree.setBounds(0, 89, 218, 781);
         getContentPane().add(tree);
 
-        JTextPane textPane = new JTextPane();
+        textPane = new JTextPane();
         textPane.setBounds(1310, 89, 329, 428);
         getContentPane().add(textPane);
+
+        // 문서 리스너를 추가하여 자동 저장 구현
+        textPane.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                saveText();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                saveText();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                saveText();
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(219, 86, 1089, 731);
         getContentPane().add(scrollPane);
 
-        JTextArea textArea = new JTextArea();
+        textArea = new JTextArea(); // 메인 JTextArea 초기화
         scrollPane.setViewportView(textArea);
 
         JPanel panel_1 = new JPanel();
@@ -110,26 +133,22 @@ public class GuiTestApp extends JFrame {
         panel_1.setLayout(new GridLayout(0, 2, 0, 0));
 
         JButton btnNewButton = new JButton("추가");
-        panel_1.add(btnNewButton);
         btnNewButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(GuiTestApp.this, "추가되었습니다", "알림", JOptionPane.INFORMATION_MESSAGE);
-				
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openAddDialog();
+            }
+        });
+        panel_1.add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("삭제");
-        panel_1.add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(GuiTestApp.this,"삭제되었습니다","알림",JOptionPane.INFORMATION_MESSAGE);
-				
-			}
-		} );
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(GuiTestApp.this, "삭제되었습니다", "알림", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        panel_1.add(btnNewButton_1);
 
         // 월 선택 콤보박스
         monthCombo = new JComboBox<>();
@@ -153,7 +172,7 @@ public class GuiTestApp extends JFrame {
         getContentPane().add(scrollPane_1);
 
         day = new JTextArea();
-        day.setFont(new Font("Monospaced", Font.PLAIN, 14)); 
+        day.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Monospaced 폰트를 사용하여 일정 간격 유지
         scrollPane_1.setViewportView(day);
 
         // 현재 날짜로 초기화
@@ -178,6 +197,32 @@ public class GuiTestApp extends JFrame {
         yearCombo.addActionListener(comboBoxListener);
     }
 
+    private void openAddDialog() {
+        // 새로운 JDialog 생성
+        JDialog addDialog = new JDialog(this, "항목 추가", true);
+        addDialog.setSize(400, 300);
+        addDialog.setLayout(new GridLayout(3, 1));
+
+        // JTextArea 추가
+        JTextArea inputTextArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(inputTextArea);
+        addDialog.add(scrollPane);
+
+        // "저장하기" 버튼 추가
+        JButton saveButton = new JButton("저장하기");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String text = inputTextArea.getText();
+                textArea.append(text + "\n"); // 메인 JTextArea에 추가
+                addDialog.dispose(); // 다이얼로그 닫기
+            }
+        });
+        addDialog.add(saveButton);
+
+        addDialog.setVisible(true);
+    }
+
     private void showCalendar() {
         int month = (int) monthCombo.getSelectedItem() - 1; // 월은 0부터 시작
         int year = (int) yearCombo.getSelectedItem();
@@ -187,7 +232,7 @@ public class GuiTestApp extends JFrame {
         int startDay = calendar.get(Calendar.DAY_OF_WEEK);
         int numberOfDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        String[] headers = {"일", "월", "화", "수", "목", "금", "토"};
+        String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         day.setText(""); // JTextArea 초기화
 
         // 헤더 추가
@@ -211,6 +256,15 @@ public class GuiTestApp extends JFrame {
 
         day.append("\n");
     }
+
+    private void saveText() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("textPaneContent.txt"))) {
+            writer.write(textPane.getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 
 
