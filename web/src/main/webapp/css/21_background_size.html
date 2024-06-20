@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div {
+	margin: 20px;
+	width: 500px;
+	height: 350px;
+	border: 1px solid red;
+	background: url("/web/css/image/station.jpg") no-repeat;
+}
+/*background-size : 배경 이미지 크기 관련 스타일*/
+/* 속성값 : auto(기본) - 배경 이미지를 그대로 출력 - 반복되지 않을 경우 여백 출력 또는 이미지가 크면 잘라내기 */
+.bgsize1 {background-size: auto;}
+
+/* 속성값 : 배경 이미지의폭을 px 단위로 변경 - 이미지 비율에 맞게 높이는 자동 변경*/
+.bgsize2 {background-size: 300px;}
+/* 폭과 높이 변경 가능*/
+.bgsize3 {background-size: 400px 300px;}
+
+.bgsize4 {background-size: 90%;}
+
+.bgsize5 {background-size: 80% 80%;}
+
+/* 속성값 : contain - 배경 이미지의 폭과 높이 중 태그의 폭과 높이의 차이가 작은부분을 100% 처리*/
+/* 차이가 큰 부분은 여백 발생*/
+.bgsize6 {background-size: contain;}
+
+
+.bgsize7 {background-size: cover;}
+</style>
+</head>
+<body>
+	<h1>배경 스타일</h1>
+	<hr>
+	<div class="bgsize1"></div>
+	<div class="bgsize2"></div>
+	<div class="bgsize3"></div>
+	<div class="bgsize4"></div>
+	<div class="bgsize5"></div>
+	<div class="bgsize6"></div>
+	<div class="bgsize7"></div>
+</body>
+</html>

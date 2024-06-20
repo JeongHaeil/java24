@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div{
+	margin: 20px;
+	height: 300px;
+	width:500px;
+	border: 1px solid black;
+}
+
+.grade1{
+	/*background : linear-gradient 함수 사용*/
+	/*linear-gradient : 태그에 선형 그라이데션 효과를 제공하는 함수*/
+	/* 그라데이션 효과 : 색이 한쪽 방향으로 일정하게 변화되어 출력되는 효과*/
+	/* 형식 _ linear-gradient (진행 반향 , 시작색 ,종료색)*/
+	/* => 진행방향 : 각도(deg) , 키워드(to left, to right , to bottom, to top)*/
+	background: linear-gradient(45deg , red , white);
+	background: linear-gradient(135deg , blue , white);
+	background: linear-gradient(to bottom , green , white);
+	/* 시작색 뒤에 중간색 표현 가능 - 중간*/
+	background: linear-gradient(255deg , olive , white 30%, olive);
+
+}
+.grade2{
+	background: redial-gradient(circle, white, blue);
+}
+
+
+</style>
+</head>
+<body>
+	<h1>배경</h1>
+	<hr>
+	<div class="grade1"></div>
+	<div class="grade2"></div>
+</body>
+</html>
