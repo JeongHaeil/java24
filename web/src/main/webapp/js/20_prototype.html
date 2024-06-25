@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트 객체</h1>
+	<hr>
+	<p>자바스크립트는 객체 지향 프로그래밍 언어로 객체를 사용해 프로그램 작성 - 자바스크립트는 모든 값을 객체로 표현하여
+		처리한다</p>
+	<p>객체(Object) : 현실에 존재하는 특정 대상을 프로그램에서 사용하기 위해서 속성(Property) 과
+		함수(Function)으로 구성하여 표현한 값</p>
+	<p>자바스크립트는 클래스(class) 자료형 대신 생성자 함수(ProtoType)를 사용해 객체 생성 -new 연산자로
+		클래스 함수를 호출하여 객체 생성</p>
+	<p>ES6에서는 클래스 자료형을 선언하여 new 연산자로 클래스의 생성자(Constructor)를 호출해 객체생성</p>
+	<p>클래스 함수(클래스 자료형)를 사용하여 객체를 생성하는 이유는 동일한 속성과 함수를 가지고 있는 다수의 객체를 쉽게
+		생성하기 위해 사용한다. - 생산성 및 유지보수 효율성 증가</p>
+
+	<script type="text/javascript">
+	//생성자 함수(prototype) 선언 - 객체를 생성하기 위한 특별한 함수
+	// => 일반 함수와 구분하기 위해 생성자 함수는 함수명의 첫문자는 대문자로 작성 - 파스칼 표기법
+	// => 객체는  속성과 함수 || 생성자 함수에 매개변수를 작성해 값을 전달받아 속성(Property) 의 초기값으로 저장
+	function Student(num,name,address) {
+		//this 키워드로 객체의 요소(속성 과 함수 ) 표현
+		// => this : 생성자 함수에서 객체를 표현하기위한 키워드
+		
+		//this 키워드로 변수에 값을 저장하여 객체 속성 생성
+		//객체 속성(Object Property) : 객체의 속성값을 저장하기 위한 변수 - 멤버변수
+		this.num=num;
+		this.name=name;
+		this.address=address;
+		
+		//this 키워드를 사용해 변수에 함수를 저장하여 객체 함수 생성
+		//객체 함수(Function) : 객체를 사용해 원하는 기능을 구현할 수 있는 명령의 모임 - 멤버함수
+		// => 객체 함수에서는 this 키워드를 사용해 객체속성의 명령 작성 가능
+		// => 객체함수는 객체마다 따로 함수를 만들어 저장 - 
+		// 객체의 갯수만큼 객체함수가 만들어져 메모리 비효율적 사용
+		/* 
+		this.display=function(){
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = " +this.address);
+			}
+			
+		
+			this.toString=function(){
+				return "학번 = "+this.num+", 이름 = "+this.name+", 주소 = " +this.address;
+				
+				} 
+			this.setValue=function(num,name,address){
+				this.num=num;
+				this.name=name;
+				this.address=address;
+				
+			}
+			*/
+			
+		}
+	//생성자 함수가 아닌 외부에서 객체함수를 생성하여 생성자 함수에 추가
+	// => 객체의 갯수에 상관없이 객체함수는 하나만 생성되어 사용된다.
+/* 	Student.prototype.display=function(){
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = " +this.address);
+	}
+	Student.prototype.setValue=function(num,name,address){
+		this.num=num;
+		this.name=name;
+		this.address=address; */
+		
+		
+	Student.prototype={
+		"display" : function(){
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = " +this.address);
+		
+			},
+		"setValue": function(num,name,address){
+			this.num=num;
+			this.name=name;
+			this.address=address;
+		}
+		}
+		
+	
+	//생성자 함수 (Prototype) 를 사용하여 객체를 생성하는 방법
+	// => new 연산자로 생성자 함수를 호출해 객체를 생성하고 생성된 객체를 변수에 저장 - 객체형 변수
+	// 형식) var 변수명=new 생성자함수(값,값,....)
+	var student1=new Student(1000,"홍길동","서울시 강남구");
+	alert("student1 변수의 자료형"+typeof(student1));
+	//객체형 변수를 출력할 경우 자동으로 toString 객체함수가 자동 호출되어 반환값을 제공 받아 출력
+	//=> 객체에 toString 객체함수가 없는 경우 Object 객체의 toString 객체함수가 자동 호출되어 반환값 제공받아 처리
+	
+	alert(student1);  //object Object - 생성자 함수로 생성된 객체는 Object 객체로 표현
+	
+	//객체형 변수에 저장된 객체를 [.] 연산자를 사용해 객체 속성과 객체 함수 사용 가능
+	student1.display();
+	
+	var student2=new Student(2000,"임꺽정","서울시 종로구");
+	student2.display();
+	</script>
+</body>
+</html>

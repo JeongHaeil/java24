@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<h1>내장함수 - eval 함수</h1>
+	<hr>
+	<p>eval(string) : 매개변수로 전달받은 문자값을 자바스크립트 명령으로 실행하는 함수
+	<script type="text/javascript">
+	
+	var text="20+10";
+	//변수에 저장된 문자값 호출
+	//alert(text); // 20+10
+	
+	//변수에 저장된 문자값을 eval 함수를 사용해 자바스크립트 명령으로 실ㅇ행
+	//alert(eval(text));// = 30
+	/* 
+	var operation=prompt("연산식을 입력해주세요");
+	alert("연산 결과 = "+eval(operation));
+	 */
+	 
+	 
+	var display="function(){ alert ('함수 명령 실행');}"
+	//alert(display)
+	//익명함수를 생성하는 선언문을 명령으로 실행되도록 문자값의 앞뒤에 () 기호를 붙여  실행
+	//alert("display 변수의 자료형 = "+typeof(eval("("+display+")")));
+	eval("("+display+")")();
+	
+	</script>
+	
+</body>
+</html>
