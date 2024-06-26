@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>String 생성자 함수</h1>
+	<hr>
+	<p>String 생성자 함수 : String 객체를 생성하기 위한 생성자함수</p>
+	<p>String 객체 : 문자값을 저장하기 위한 객체</p>
+	
+	<script type="text/javascript">
+	
+	
+	/* var str="Hello, JavaScript";
+	alert(typeof(str));	 //변수 자료형 String
+	 */
+	
+	var str=new String("Hello,JavaScript!!!!!");
+	//alert(typeof(str));// 변수 자료형 Object
+	
+	//alert(str); // str.toString 생략
+	
+	//String.length : String 객체에 저장된 문자값의 문자 갯수를 저장한 멤버 변수
+	//alert("str.length = "+str.length);
+	
+	//String.charAt(index) : String 객체에 저장된 문자값에서 매개변수로 전달받은 첨자 위치의 문자를 반환하는 변수
+	//alert("str.chatAt(7) = "+str.charAt(7));
+	
+	//String.indexOf : String 객체에 저장된 문자값에서 매개변수로 전달받은 문자값
+	//검색하여 시작첨자를 반환하는 멤버함수 - 검색 문자값이없는경우 -1 반환
+	//alert("str.indexOf(7) = "+str.indexOf('Script'));
+	//alert("str.indexOf(7) = "+str.indexOf('script')); // -1 
+	
+	//String.replace(search, replace) : String 객체에 저장된 문자값에서 매개변수로 전달받은 문자값
+	//첫번째 문자열을 검색하여 두번째 문자값 변환하여 반환하는 함수
+	//alert("str.replace('Hello', 'Hi') = "+str.replace('Hello','Hi'));
+	
+	
+	//String.toUpperCase() : String 객체에 저장된 문자값을 대문자로 변환하여 반환하는
+	//String.toLowerCase() : String 객체에 저장된 문자값을 소문자로 변환하여 반환하는
+	//alert("str.toUpperCase = " +str.toUpperCase());
+	//alert("str.toLowerCase = " +str.toLowerCase());
+	
+	//String.substring(from,to) : String 객체에 저장된 문자값에서 매개변수로 전달받은
+	//시작첨자(from - 포함) 부터 종료첨자 (to - 미포함) 까지 문자값을 잘라내어 변환하는 함수
+	
+	//alert("str.substring(7,11) = "+str.substring(7, 11));
+		
+	//String.substr(from , length) : String 객체에 저장된 문자값에서 매개변수로 전달받은
+	//시작첨자(from - 포함) 부터 길이 만큼의 문자값을 잘라내어 변환하는 함수
+	//alert("str.substr(7,4) = "+str.substr(7, 4));
+	
+	//String.split (pattern) : String 객체에 저장된 문자값에서 매개변수로 전달받은
+	//구분 분리하여 Array 객체의 요소값으로 저장해 Array 객체 반환하는 함수
+	//var [str1, str2] = str.split(","); //구조 분해할당 기능 사용해 반환받은 Array 객체의 요소값을 변수에저장 
+	
+	//String.trim : String 객체에 저장된 문자값에서 앞과 뒤에 ㄱ존재하는 공백 제거
+	//alert("str1 = "+str1+", str2 = "+str2.trim());	
+	
+	
+	var str="ABCDEFG";
+	//alert("str 변수의 자료형 = "+typeof(str));
+	
+	//문자값은 내부적으로 String 객체로 처리되므로 멤버변수와 멤버함수 사용가능
+	alert("str.length = "+str.length);
+	
+	</script>
+</body>
+</html>
