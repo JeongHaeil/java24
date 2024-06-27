@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/* //window.onload : window 객체가 완성된 경우 발생되는 이벤트 리스너 속성에 이벤트 처리 함수 등록
+window.onload=function(){
+	alert("동적인 페이지 구현을 위한 명령 작성")
+}	
+	 */
+	
+</script>
+
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<hr>
+	<p>DOM : Document 객체를 기반으로 제공되는 자바스크립트 객체 - 테그 </p>
+	<p>클라이언트는 브라우저를 사용하여 서버의 웹프로그램을 요청해 실행결과를 HTML 문서로 응답받아 
+	브라우저 엔진의 DOM Parser로 HTML 문서를 읽어 DOM Tree를 생성한 후 CSS 스티일 시트를 적용해
+	브라우저에 출력 처리</p>
+	<p>자바스크립트를 사용해 태그에서 이벤트가 발생될 경우 DOM Tree에 존재하는 태그를 조작해
+	동적인 페이지 구현 가능 - DHTML : DOM Tree 완성돼야 동적인 페이지 구현 가능 </p>
+	<p>Node 객체 : 태그(TagNode)와 태그내용(TextNode)을 자바 스크립트 객체로 표현
+		- Element 객체와 Text 객체로 분리하여 표현 가능 </p>
+	<p>Element 객체 : 태그(TagNode) 만을 자바스크립트 객체로 표현</p>
+	<p>Text 객체 : 태그내용(TextNode)만을 자바스크립트 객체로 표현 </p>
+	<hr>
+	<h2 id="headline">h2 태그에 의해 출력되는 내용</h2>
+	<ul>
+		<li>li 태그에 의해 출력되는 내용-1</li>
+		<li>li 태그에 의해 출력되는 내용-2</li>
+		<li>li 태그에 의해 출력되는 내용-3</li>
+	</ul>
+	<p class="text">p 태그에 의해 출력되는 내용</p>
+	
+	<!-- body 태그의 마지막 자식태그로 script 태그를 작성하면 onload 이벤트 리스너 속성에
+	이벤트 처리 함수를 등록하지 않아도 동적인 페이지 구현을 위한 명령 작성-->
+	<script type="text/javascript">
+		//alert("동적인 페이지 구현을 위한 명령 작섣ㅇ")
+		
+		//document.getElementById : document 객체에서 태그의 id 속성값으로 태그를 검색해
+		//Element 객체로 반환하는 멤버함수
+		//=> document 객체 대신 demenr 
+		/* 
+		var h2E=document.getElementById("headline");
+		
+		
+		//Element.nodeName : element 객체에 노드명(태그명) 저장 한 변수
+		alert(h2E.nodeName);
+		//Element.nodeName : element 객체에 노드값(태그내용) 저장한 변수
+		alert(h2E.nodeValue);
+		 
+		alert(h2e.nodeValue);//null
+		//Element.firstChild : Element 객체의 첫번째 자식태그(Element 객체)를 저장하는 멤버변수
+		// => 자식태그가 아닌 태그내용 (Text 객체) 이 첫번째 자식으로 저장
+		//alert(h2e.firstChild); //object
+		//alert(h2e.firstChild.nodeName); //#text
+		//alert(h2e.firstChild.nodeValue); //h2 태그에 의해 출력되는 내용
+		
+		h2E.firstChild.nodeValue="자바스크릅티에 의해 변경된 내용";
+		 */
+		
+		//document.getElementsByTagName(tagName); : DOM 트리의 document 객체에서 태그의 이름으로
+		//하나의 태그를 검색해 NodeList 객체(HTML Collection 객체)로 반환하는 멤버함수
+		//HTML Collection 객체 : 태그(Element 객체) 가 여러개 저장된 콜렉션 객체
+		/* /* 
+		var liList=document.getElementsByTagName("li");
+			//alert(liList); //[object HTMLCollection]
+			
+			//HTMLCollection.length : HTMLCollection (NodeList 객체)의 저장된 요소의 갯수를 저장한멤버
+			//alert(liList.length); // 3	
+		 
+		 	for(i=0;i<liList.length;i++){
+			//HTML Collection.item(index) : HTML Collection (NodeList 객체)에서 매개변수로 전달받은
+			//첨자 위치의 요소 (Element) 를 반환하는 멤버함수
+				var liE=liList.item(i);
+				//alert(liE);
+				alert(liE.firstChild.nodeValue);
+		 	}
+		  */
+		 /*  
+		  //document.getElementsByClassName("") // DOM 트리 document 객체 태그 class 속성
+		  var plist=document.getElementsByClassName("text");
+		 //alert(plist); //[object HTMLCollection]
+		  alert(plist.item(0).firstChild.nodeValue);
+		  */ 
+		/*  
+		 //document.querySelector(selectors) // DOM 트리의 document 객체에서 CSS 선택자로 검색히 Element 객체 반환 멤버함수
+		 var h2e=document.querySelector("#headline");
+		  alert(h2e); // [object HTMLHeadingElement]
+		  alert(h2e.firstChild.nodeValue);
+		   */
+		  
+		//document.querySelectorAll(selectors) : DOM 트리의 document 객체에서 CSS 선택자로 다수의 선택자를 검색해 Element 객체 반환 멤버함수 
+		var plist=document.querySelectorAll(".text");
+		alert(plist.item(0).firstChild.nodeValue); 
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+ </script>
+</body>
+</html>
