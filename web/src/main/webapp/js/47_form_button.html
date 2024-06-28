@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트와 form 태그</h1>
+	<hr>
+	<form name="loginForm">
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="id"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="passwd"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button type="button" id="loginBtn">로그인</button></td>
+			</tr>
+		</table>
+		</form>
+	<script type="text/javascript">
+	loginForm.id.focus();
+	
+	//Element 객체에서 클릭 이벤트가 발생될 경우 호출될 이벤트 처리 함수 저장
+	// => 입력태그의 입력값을 제공받아 검증한 후 정상적인 경우 제출 이벤트 발생하여 form
+	//태그를 실행해 웹프래그램 요청할 수 있는 명령 작성
+	document.getElementById("loginBtn").onclick=function(){
+		if (loginForm.id.value == "") {//아이디가 입력되지 않은 경우
+			alert("아이디를 입력해 주세요.");
+			loginForm.id.focus();
+			return;
+			
+			var idReg = /^[a-zA-Z]\w{5,19}$/g;
+			
+			//RegExp.text(input) : RegExp 객체에 저장된 정류 표현식과 매개변수로 전달받은 입력값의
+			//패턴이 일치하지 않으면 [false]를 반환하고 일치하면 [true] 반환하는 멤버함수
+			if(!idReg.text(loginForm.id.value)) { //아이디 입력패턴 불일치
+				loginForm.id.focus();
+				return;
+			}
+			
+
+			if (loginForm.passwd.value == "") {//아이디가 입력되지 않은 경우
+				alert("비밀번호를 입력해 주세요.");
+				loginForm.passwd.focus();
+
+				//event.preventDefault(); //제출 이벤트에 의해 form 태그 실행 취소
+				//return;//이벤트 처리 함수 종료
+
+				//이벤트 처리 함수에서 return 명령을 사용해 [false]를 반환하면 이벤트 처리함수를
+				//종료하면서 태그의 기본 명령 실행을 취소 및 이벤트 전달 중지
+				return;
+
+			}	
+			//Element 객체에 태그 속성을 추가하여 속성값 변경
+			// => 변수값에 의해 form 태그로 웹프로그램을 다르게 요청해야 하는 경우 사용
+			loginForm.action="47_form_btn.html";
+			loginForm.method="post";
+			
+			//모든 입력값에 대한 검증이 성공한 경우 제출 이벤트를 발생시켜 form 태그가 실행되도록
+			//HTMLFormElement.submit() : Element 객체로 제출 이벤트를 발생하는 멤버함수
+			// => form 태그가 실행되어 웹프로그램 요청
+			loginForm.submit();
+		}
+			
+	}
+	
+	</script>
+	
+</body>
+</html>
