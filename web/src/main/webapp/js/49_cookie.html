@@ -41,7 +41,7 @@
 		//쿠키변수에 [expires] 이름의 매개변수로 전달받은 쿠키의 유지시간을 묶어서 저장		
 		//Date.getUTCString() : Date 객체에 저장된 날짜와 시간을 협정  세계시(UTC) = 표준날짜와 시간
 		//문자값으로 변환하여 반환하는 멤버함수 
-		sc+="expires="+date.getUTCString()+";";
+		sc+="expires="+date.toUTCString()+";";
 		
 		//document.cookie : 쿠키를 저장하기 위한 객체
 		document.cookie=sc; // 클라이언트 브라우저에 쿠키 저장
