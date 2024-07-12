@@ -1,8 +1,8 @@
-﻿<%@page import="java.net.URLEncoder"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--
+<%
 	//session 내장객체에서 권한 관련 정보가 저장된 속성값을 객체로 반환받아 저장
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
 
@@ -23,17 +23,9 @@
 		
 		//URL 주소를 부호화 처리하여 저장
 		url=URLEncoder.encode(url, "utf-8");
-		System.out.println("url = "+url);//queryString = workgroup=cart&work=cart_list
+		//System.out.println("url = "+url);//queryString = workgroup=cart&work=cart_list
 		
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=member&work=member_login&url="+url);
 		return;	
 	}
---%>   
-<%@include file="/security/login_url.jspf" %> 
-<h1>장바구니 목록</h1>
-
-
-
-
-
-
+%> 

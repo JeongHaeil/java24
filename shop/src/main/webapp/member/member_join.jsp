@@ -4,6 +4,7 @@
 <%-- => [회원가입] 태그를 클릭한 경우 [/member/member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
 <%-- => [아이디 중복 검사] 태그를 클릭한 경우 새로운 브라우저(팝업창)를 생성하여 
 [/member/id_check.jsp] 문서 요청 - 아이디 전달  --%>    
+<%-- 우편번호 검색 태그를 클릭한 경우 [Daum 우편번호 서비스]를 사용하여 입력태그의 입력 --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
 fieldset {
@@ -52,7 +53,8 @@ legend {
 	background: aqua;
 }
 </style>
-<form id="join" action="<%=request.getContextPath() %>/index.jsp?workgroup=member&work=member_join_action" method="post">
+<form id="join" name="loginForm" method="post"
+ action="<%=request.getContextPath() %>/index.jsp?workgroup=member&work=member_join_action" >
 <%-- [아이디 중복 검사] 기능 실행 여부를 확인하기 위한 입력태그 --%>
 <%-- => 0 : [아이디 중복 검사] 미실행 - 아이디 중복, 1 : [아이디 중복 검사] 실행 - 아이디 미중복 --%>
 <input type="hidden" id="idCheckResult" value="0">
@@ -231,6 +233,7 @@ $("#id").change(function() {
 	//입력태그(아이디 중복 검사 실행 여부)의 입력값이 변경
 	$("#idCheckResult").val("0");
 });
+
 $(#"postSearch").click(function() {
 	new daum.Postcode({
 	    oncomplete: function(data) {

@@ -99,4 +99,75 @@ public class MemberDAO extends JdbcDAO{
 		return member;
 	}
 	
+	//회원번호 (int)를 전달받아 Member 테이블에 저장된 행에서 마지막 로그인 날짜를 현재날짜와
+	//시간으로 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateLastLogin(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		
+		try {
+			con=getConnection();
+			
+			String sql="update member set member_last_login=sysdate where member_num=?";
+					
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rows=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.getMessage();
+		}finally {
+			close(con,pstmt);
+		}
+		return rows;
+	}
+	
+	//회원번호 (int)를 전달받아 Member 테이블에 저장된 행에서 마지막 로그인 날짜를 현재날짜와
+	//시간으로 변경하고 변경행의 갯수를 반환하는 메소드
+	public MemberDTO selectMemberByNum(String num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		MemberDTO member=null;
+		
+		try {
+			con=getConnection();
+			
+			String sql="select member_num,member_id,member_passwd,member_name,member_email"
+					+",member_mobile,member_zipcode,member_address1,member_address2"
+					+",member_register_date,member_update_date,member_last_login,member_auth"
+					+" from member where member_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, num);
+				
+				rs=pstmt.executeQuery();			
+				
+				if(rs.next()) {
+					member=new MemberDTO();
+					member.setMemberNum(rs.getInt("member_num"));
+					member.setMemberId(rs.getString("member_id"));
+					member.setMemberPasswd(rs.getString("member_passwd"));
+					member.setMemberName(rs.getString("member_name"));
+					member.setMemberEmail(rs.getString("member_email"));
+					member.setMemberMobile(rs.getString("member_mobile"));
+					member.setMemberZipcode(rs.getString("member_zipcode"));
+					member.setMemberAddress1(rs.getString("member_address1"));
+					member.setMemberAddress2(rs.getString("member_address2"));
+					member.setMemberRegisterDate(rs.getString("member_register_date"));
+					member.setMemberUpdateDate(rs.getString("member_update_date"));
+					member.setMemberLastLogin(rs.getString("member_last_login"));
+					member.setMemberAuth(rs.getInt("member_auth"));
+				
+				
+			}
+			
+		}catch(SQLException e) {
+			e.getMessage();
+		}finally {
+			close(con,pstmt,rs);
+		}
+		return member;
+	}
+	
 }
