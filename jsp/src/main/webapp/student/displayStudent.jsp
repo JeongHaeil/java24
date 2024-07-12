@@ -4,9 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- STUDENT 테이블에 저장된 모든 행(학생정보)를 검색하여 HTML 태그에 포함하여 응답하는 JSP 문서 --%>
-<%--  --%>
+<%-- => [학생추가] 태그를 클릭한 경우 [insertFormStudent.jsp] 문서를 요청하여 페이지 이동 --%>    
+<%-- => 학생정보의 [삭제] 태그를 클릭한 경우 [deleteStudent.jsp] 문서를 요청하여 페이지 이동 - 학번 전달 --%>    
+<%-- => 학생정보의 [변경] 태그를 클릭한 경우 [updateFormStudent.jsp] 문서를 요청하여 페이지 이동 - 학번 전달 --%>
 <%
-List<StudentDTO> studentList=StudentDAO.getDAO().selectStList();
+	//STUDENT 테이블에 저장된 모든 행을 검색하여 List 객체로 반환하는 StudentDAO 클래스의 메소드 호출
+	List<StudentDTO> studentList=StudentDAO.getDAO().selectStList();
 %>    
 <!DOCTYPE html>
 <html>
@@ -14,7 +17,6 @@ List<StudentDTO> studentList=StudentDAO.getDAO().selectStList();
 <meta charset="UTF-8">
 <title>JSP</title>
 <style type="text/css">
-
 h1 {
 	margin: 0 auto;
 	width: 850px; 
@@ -56,7 +58,7 @@ th, td {
 <body>
 	<h1>학생목록</h1>
 	<div>
-		<button type="button">학생추가</button>
+		<button type="button" id="addBtn">학생추가</button>
 	</div>
 	<table>
 		<tr>
@@ -78,9 +80,26 @@ th, td {
 			<td><%=student.getAdress() %></td>				
 			<td><%=student.getBirthday().substring(0, 10) %></td>				
 			<td><button type="button">삭제</button></td>		
-			<td><button type="button">변경</button></td>
+			<td><button type="button" onclick="modifyStudent(<%=student.getNo()%>);">변경</button></td>		
 		</tr>	
 		<% } %>
 	</table>
+	
+	<script type="text/javascript">
+	document.getElementById("addBtn").onclick=function() {
+		location.href="<%=request.getContextPath()%>/student/insertFormStudent.jsp";	
+	}
+	
+	function modifyStudent(no) {
+		//alert(no);
+		location.href="<%=request.getContextPath()%>/student/updateFormStudent.jsp?no="+no;	
+	}
+	function removeStudent(no) {
+		if(confirm("학생정보를 정말로 삭제 하시겠습니까?")) {
+			location.href="<%=request.getContextPath()%>/student/removeStudent.jsp?no="+no;
+		}
+	}
+	
+	</script>
 </body>
 </html>
