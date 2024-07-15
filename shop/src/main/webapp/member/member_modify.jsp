@@ -1,11 +1,31 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="xyz.itwill.util.Utility"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
-<%-- => [회원가입] 태그를 클릭한 경우 [/member/member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
-<%-- => [아이디 중복 검사] 태그를 클릭한 경우 새로운 브라우저(팝업창)를 생성하여 
-[/member/id_check.jsp] 문서 요청 - 아이디 전달  --%>
+<%-- 사용자로부터 변경할 회원정보를 입력받기 위한 JSP 문서 --%>
+<%-- => 로그인 사용자만 요청 가능한 JSP 문서 --%>
+<%-- => 비밀번호를 전달받아 MEMBER 테이블에 저장된 회원정보의 비밀번호와 비밀번호와 비교하여 
+같은 경우 회원정보를 입력태그의 입력으로 출력 처리 - 세션에 저장된 회원정보를 사용 가능 --%>
 <%-- => [우편번호 검색] 태그를 클릭한 경우 [Daum 우편번호 서비스]를 사용하여 입력태그(우편번호와
 기본주소)의 입력값 변경 --%>
+<%-- => [회원변경] 태그를 클릭한 경우 [/member/member_modify_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
+<%@include file="/security/login_check.jspf" %>
+<%
+	//비정상적으로 JSP 문서를 요청한 경우에 대한 응답 처리
+	if(request.getMethod().equals("GET")) {//JSP 문서를 GET 방식으로 요청한 경우
+		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
+		return;
+	}
+
+	//전달값을 반환받아 저장
+	String passwd=Utility.encrypt(request.getParameter("passwd"));
+
+	//로그인 사용자의 비밀번호와 전달받은 비밀번호를 비교하여 같지 않은 경우에 대한 응답 처리
+	if(!loginMember.getMemberPasswd().equals(passwd)) {
+		session.setAttribute("message", "입력하신 비밀번호가 맞지 않습니다. 비밀번호를 정확히 입력해 주세요.");
+		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=member&work=password_confirm&action=modify");
+		return;		
+	}
+%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    
 <style type="text/css">
 fieldset {
@@ -54,19 +74,15 @@ legend {
 	background: aqua;
 }
 </style>
-<form id="join" action="<%=request.getContextPath() %>/index.jsp?workgroup=member&work=member_join_action" method="post">
-<%-- [아이디 중복 검사] 기능 실행 여부를 확인하기 위한 입력태그 --%>
-<%-- => 0 : [아이디 중복 검사] 미실행 - 아이디 중복, 1 : [아이디 중복 검사] 실행 - 아이디 미중복 --%>
-<input type="hidden" id="idCheckResult" value="0">
+<form id="join" action="<%=request.getContextPath() %>/index.jsp?workgroup=member&work=member_modify_action" method="post">
+<input type="hidden" name="num" value="<%=loginMember.getMemberNum() %>">
 <fieldset>
 	<legend>회원가입 정보</legend>
 	<ul>
 		<li>
 			<label for="id">아이디</label>
-			<input type="text" name="id" id="id"><span id="idCheck">아이디 중복 검사</span>
-			<div id="idMsg" class="error">아이디를 입력해 주세요.</div>
-			<div id="idRegMsg" class="error">아이디는 영문자로 시작되는 영문자,숫자,_의 6~20범위의 문자로만 작성 가능합니다.</div>
-			<div id="idCheckMsg" class="error">아이디 중복 검사를 반드시 실행해 주세요.</div>
+			<input type="text" name="id" id="id" vlaue="<%=loginMember.getMemberId()%>" readonly="readonly">
+		
 		</li>
 		<li>
 			<label for="passwd">비밀번호</label>
@@ -77,12 +93,13 @@ legend {
 		<li>
 			<label for="passwd">비밀번호 확인</label>
 			<input type="password" name="repasswd" id="repasswd">
+			<span style="color : red;">비밀번호를 변경하지 않을 경우 입력하지 마세요.</span>
 			<div id="repasswdMsg" class="error">비밀번호 확인을 입력해 주세요.</div>
 			<div id="repasswdMatchMsg" class="error">비밀번호와 비밀번호 확인이 서로 맞지 않습니다.</div>
 		</li>
 		<li>
 			<label for="name">이름</label>
-			<input type="text" name="name" id="name">
+			<input type="text" name="name" id="name" vlaue= "<%=loginMember.getMemberName() %>" >
 			<div id="nameMsg" class="error">이름을 입력해 주세요.</div>
 		</li>
 		<li>
@@ -92,9 +109,10 @@ legend {
 			<div id="emailRegMsg" class="error">입력한 이메일이 형식에 맞지 않습니다.</div>
 		</li>
 		<li>
+			<% String[] mobile=loginMember.getMemberMobile().split("-"); %>
 			<label for="mobile2">전화번호</label>
 			<select name="mobile1">
-				<option value="010" selected>&nbsp;010&nbsp;</option>
+				<option value="010" <%if(mobile[0].equals("010")) {%>% selected <%} %>>&  nbsp;010&nbsp;</option>
 				<option value="011">&nbsp;011&nbsp;</option>
 				<option value="016">&nbsp;016&nbsp;</option>
 				<option value="017">&nbsp;017&nbsp;</option>

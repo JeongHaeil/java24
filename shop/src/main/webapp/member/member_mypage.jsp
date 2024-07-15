@@ -44,8 +44,8 @@
 </div>
 
 <div id="link">
-	<a href="">[회원정보변경]</a>
-	<a href="">[회원탈퇴]</a>
+	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=member&work=password_confirm&action=modify>">[회원정보변경]</a>&nbsp;&nbsp;
+	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=member&work=password_confirm&action=remove>">[회원탈퇴]</a>
 </div>
 
 
