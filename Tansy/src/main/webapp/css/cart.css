@@ -1,0 +1,150 @@
+/*장바구니 메인 화면*/
+.cont_article{
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px ;
+    width: 1200px;
+    margin: 0 auto;
+    border-top: 0;
+}
+/*장바구니 메인 타이틀*/
+h2{
+    font-size: 25px;
+    color: black;
+    font-weight: 400;
+    text-align: left;
+
+
+}
+/*장바구니 주문완료 단계*/
+ol{
+    position: relative;
+    display: flex;
+    flex-direction:row-reverse;
+    line-height: 80px;
+}
+/*장바구니 주문완료 단계*/
+li{
+    text-align: right;
+   
+    
+}
+
+
+/*쇼핑 계속하기*/
+.btn_left_box{
+    text-align: left;
+}
+/*쇼핑 계속하기*/
+.shop_go_link{
+    
+    text-decoration-thickness: 0.5px;
+    text-decoration: underline;
+    text-decoration-color: gray;
+
+    
+}
+/* 상품 금액 총계*/
+.price_sum{
+    
+    border: 2px solid #dbdbdb;
+    margin: 60px 0 0 0;
+    padding: 20px 40px 25px 40px;
+    
+
+}
+/* 상품 금액 총계*/
+.price_sum_cont{
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: right;
+    
+}
+.price_sum_list {
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+}
+.price_sum_list span {
+    margin-right: 20px;
+}
+.price_sum_list dl {
+    margin-right: 20px;
+}
+
+/*장바구니 담겨있는 곳*/
+.no_data{
+    text-align: center;
+    color: #444;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    margin: 0 0 20px 0;
+    padding: 60px 0;
+}
+
+/*장바구니 전체 틀*/
+.contents{ 
+    width: 100%;
+    padding: 0 0 80px;
+    min-height: 450px;
+}
+
+
+.btn_order_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    
+}
+.btn_left_box{
+    text-align: left;
+    
+
+}
+.btn_order_choice_del{
+    color: #626262;
+    border: 1px solid #a3a3a3;
+    padding: 10px;
+    text-align: center;
+    padding: 0 10px 0 10px;
+    line-height: 30px;
+    min-width: 120px;
+    
+}
+.btn_order_choice_wish{
+    color: #626262;
+    border: 1px solid #a3a3a3;
+    padding: 0 10px 0 10px;
+    line-height: 30px;
+    text-align: center;
+    min-width: 120px;
+}
+.btn_right_box{
+    text-align: right;
+    background: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3e3d3c;
+
+}
+.btn_order_choice_buy{
+    border: 1px solid #cccccc;
+    padding: 10px 30px;
+    line-height: 30px;
+    min-width: 190px;
+    background: #fff;
+
+    
+}
+.btn_order_whole_buy{
+    color: #626262;
+    border: 1px solid #a3a3a3;
+    text-align: center;
+    padding: 10px 30px;
+    line-height: 30px;
+    min-width: 190px;
+    background-color: #626262;
+    color: white;
+}

@@ -66,7 +66,7 @@ public class IfExample {
 			if (mat > 100 || mat < 0) {
 				System.out.println("비정상적인 국어점수 입력");
 			}
-			System.out.println("이름 =" + "+name+ "총점 ="+tot+ "평균 =" + (int) (ave * 100)"+ "학점 = " +grade);
+			System.out.println("이름 =" +name+ "총점 ="+tot+ "평균 =" + (int) (ave * 100)"+ "학점 = " +grade);
 		}
 
 	}
