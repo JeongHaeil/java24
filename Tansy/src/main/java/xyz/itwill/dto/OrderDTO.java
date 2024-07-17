@@ -1,6 +1,6 @@
 package xyz.itwill.dto;
 
-public class CratDTO {
+public class OrderDTO {
 	private int orderNum;
 	private int orderclientNum;
 	private String orderTime;
@@ -16,11 +16,11 @@ public class CratDTO {
 	private String orderCount;
 	private String orderEmail;
 	
-	public CratDTO() {
+	public OrderDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CratDTO(int orderNum, int orderclientNum, String orderTime, String orderDate, int orderproductNum,
+	public OrderDTO(int orderNum, int orderclientNum, String orderTime, String orderDate, int orderproductNum,
 			int orderStatus, int orderSum, String orderReceiver, String orderZipcode, String orderAddress1,
 			String orderAddress2, String orderMobile, String orderCount, String orderEmail) {
 		super();
