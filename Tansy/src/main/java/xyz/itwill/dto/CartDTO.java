@@ -5,7 +5,7 @@ public class CartDTO {
 	private int cartClientNum; //회원번호
 	private int cartProductNum; //제품번호
 	private int cartCount; // 수량
-	private int cartSum; // 수량
+	
 	
 	public CartDTO() {
 		// TODO Auto-generated constructor stub
@@ -19,21 +19,8 @@ public class CartDTO {
 		this.cartClientNum = cartClientNum;
 		this.cartProductNum = cartProductNum;
 		this.cartCount = cartCount;
-		this.cartSum = cartSum;
+		
 	}
-
-
-
-	public int getCartSum() {
-		return cartSum;
-	}
-
-
-	public void setCartSum(int cartSum) {
-		this.cartSum = cartSum;
-	}
-
-
 
 	public int getCartNum() {
 		return cartNum;
