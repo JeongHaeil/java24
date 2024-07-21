@@ -1,6 +1,7 @@
 package xyz.itwill.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +14,8 @@ import javax.sql.DataSource;
 // => 추상클래스(상속을 목적으로 작성된 클래스)로 작성하는 것을 권장
 // => WAS 프로그램에 의해 관리되는 DataSource 객체를 반환받아 필드에 저장하여 사용
 public abstract class JdbcDAO {
-	private static DataSource dataSource;
-
+	private static DataSource dataSource;	    
+	    
 	static {
 		try {
 			dataSource=(DataSource)new InitialContext().lookup("java:comp/env/jdbc/oracle");

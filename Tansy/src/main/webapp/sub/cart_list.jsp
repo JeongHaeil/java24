@@ -1,3 +1,7 @@
+<%@ page import="xyz.itwill.dto.OrdDTO"%>
+<%@ page import="xyz.itwill.dao.OrderDAO"%>
+<%@ page import="xyz.itwill.dto.ClientDTO"%>
+<%@ page import="xyz.itwill.dao.ClientDAO"%>
 <%@ page import="xyz.itwill.dto.CartDTO"%>
 <%@ page import="xyz.itwill.dao.CartDAO"%>
 <%@ page import="xyz.itwill.dao.ProductDAO"%>
@@ -17,10 +21,12 @@
 <%
     int clientNum = (Integer) session.getAttribute("clientNum");
 
-    CartDAO cartDAO = CartDAO.getCratDAO();
+    CartDAO cartDAO = CartDAO.getCartDAO();
     ProductDAO productDAO = new ProductDAO();
+    ClientDAO clientDAO = ClientDAO.getClientDAO();
 
     List<CartDTO> cartList = cartDAO.selectCartClient(clientNum);
+    ClientDTO client = clientDAO.selectClient(clientNum);
 
     if (cartList.isEmpty()) {
         out.println("장바구니가 비어있습니다");
@@ -30,7 +36,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>장바구니</title>
+    <title>구매 페이지</title>
     <!-- CSS and JavaScript includes -->
 </head>
 <body>
@@ -85,7 +91,7 @@
                                         int productPrice = product.getPrice();
                                         int itemTotal = cart.getCartCount() * productPrice;
                                         totalSum += itemTotal;
-                                    	%>
+                                    %>
                                     <tr class="order_goods">
                                         <td class="td_left"><%= product.getName() %></td>
                                         <td class="td_order_amount">
@@ -130,22 +136,152 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="payment_final_total">
-            <dl>
-                <dd>
-                    <span> <strong><%= totalSum %> 원</strong>
-                    </span>
-                    <dt>최종 결제 금액</dt>
-                </dd>
-            </dl>
-        </div>
-        <div class="btn_center_box">
-            <button class="btn_order_buy" type="button">
-                <em>결제하기</em>
-            </button>
+                <form action="processOrder.jsp" method="post">
+                    <div class="order_information">
+                        <div class="order_zone_title">
+                            <h4>주문자 정보</h4>
+                        </div>
+                        <div class="order_table">
+                            <table class="table_left">
+                                <colgroup>
+                                    <col style="width: 15%;">
+                                    <col style="width: 80%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <span class="important">주문하시는분</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="orderer_name" value="<%= client.getClientName() %>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span class="important">전화번호</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="orderer_phone" value="<%= client.getClientMobile() %>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span class="important">이메일</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="orderer_email" value="<%= client.getClientEmail() %>">
+                                            <select name="email_domain">
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="daum.net">daum.net</option>
+                                                <option value="gmail.com">gmail.com</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="delivery_information">
+                        <div class="order_zone_title">
+                            <h4>배송 정보</h4>
+                        </div>
+                        <div class="order_table">
+                            <table class="table_left">
+                                <colgroup>
+                                    <col style="width: 15%;">
+                                    <col style="width: 80%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <span class="important">받으실분</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="recipient_name" value="<%= client.getClientName() %>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span class="important">받으실곳</span>
+                                        </th>
+                                        <td class="member_address">
+                                            <div class="address_postcode">
+                                                <input type="text" id="postcode" name="postcode" value="<%= client.getClientZipcode() %>">
+                                                <button type="button" id="btn_post_search" class="btn_post_search">우편번호검색</button>
+                                            </div>
+                                            <div class="address_input">
+                                                <input type="text" id="address" name="address" value="<%= client.getClientAddress1() %>" width="200">
+                                                <input type="text" id="detailAddress" name="detailAddress" value="<%= client.getClientAddress2() %>" width="150">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span class="important">전화번호</span>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="recipient_phone" value="<%= client.getClientMobile() %>">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="payment_method">
+                        <div class="order_zone_title">
+                            <h4>결제수단 선택/결제</h4>
+                        </div>
+                        <div class="order_table">
+                            <table class="table_left">
+                                <colgroup>
+                                    <col style="width: 15%;">
+                                    <col style="width: 80%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <span class="important">일반 결제</span>
+                                        </th>
+                                        <td>
+                                            <input type="radio" name="payment_method" value="bank_transfer">계좌이체
+                                            <input type="radio" name="payment_method" value="kakao_pay">카카오페이
+                                            <input type="radio" name="payment_method" value="credit_card">신용카드
+                                            <input type="radio" name="payment_method" value="mobile_payment">휴대폰결제
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span class="important">현금영수증/계산서 발행</span>
+                                        </th>
+                                        <td>
+                                            <input type="radio" name="receipt" value="none">신청안함
+                                            <input type="radio" name="receipt" value="cash_receipt">현금영수증
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="payment_final_total">
+                        <dl>
+                            <dd>
+                                <span> <strong><%= totalSum %> 원</strong>
+                                </span>
+                                <dt>최종 결제 금액</dt>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="btn_center_box">
+                        <button class="btn_order_buy" type="submit">
+                            <em>결제하기</em>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
