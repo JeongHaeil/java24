@@ -59,7 +59,7 @@
                                 <tbody>
                                     <%
                                         int totalSum = 0;
-                                        for (CartDTO cart : cartList) {
+                                        for (CartDTO cart : cartList) {    
                                             ProductDTO product = productDAO.selectProduct(cart.getCartProductNum());
                                             int productPrice = product.getProductPrice();
                                             int itemTotal = cart.getCartCount() * productPrice;
