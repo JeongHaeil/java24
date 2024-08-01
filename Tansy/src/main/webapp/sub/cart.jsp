@@ -6,12 +6,25 @@
 <%@ page import="xyz.itwill.dao.ProductDAO"%>
 
 <%
-    int clientNum = (Integer) session.getAttribute("clientNum");
-    CartDAO cartDAO = CartDAO.getCartDAO();
-    List<CartDTO> cartList = cartDAO.selectCartClient(clientNum);
+// 세션에서 clientNum 가져오기
+// 사용자의 로그인 정보를 세션에서 가져와 loginClient 객체로 만듭니다.
+ClientDTO loginClient = (ClientDTO) session.getAttribute("loginClient");
 
-    ProductDAO productDAO = new ProductDAO();
+// loginClient 객체에서 clientNum(고객 번호)을 추출하여 cartNum 변수에 저장합니다.
+int cartNum = loginClient.getClientNum();
+
+// cartNum을 이용하여 해당 사용자의 장바구니 목록을 가져옵니다.
+List<CartDTO> cartList = CartDAO.getCartDAO().selectCartClient(cartNum);
+
+// ProductDAO 객체를 가져와서 상품 정보를 얻는 데 사용합니다.
+ProductDAO productDAO = ProductDAO.getDAO();
+
+// 총 금액을 계산하기 위해 필요한 변수들을 초기화합니다.
+int totalSum = 0;
+int delivery = 3000; // 배송비는 3000원으로 설정합니다.
+int itemTotal = 0;
 %>
+
 
 <!DOCTYPE html>
 <html>
@@ -57,14 +70,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%
-                                        int totalSum = 0;
-                                        for (CartDTO cart : cartList) {    
-                                            ProductDTO product = productDAO.selectProduct(cart.getCartProductNum());
-                                            int productPrice = product.getProductPrice();
-                                            int itemTotal = cart.getCartCount() * productPrice;
-                                            totalSum += itemTotal;
-                                    %>
+                                   <% 
+										// 장바구니 목록이 비어있지 않으면 아래의 코드를 실행합니다.
+										if (cartList != null && !cartList.isEmpty()) { 
+										
+										    // 장바구니 목록에 있는 각 항목에 대해 반복합니다.
+										    for (CartDTO cart : cartList) {
+										
+										        // 각 장바구니 항목에 해당하는 상품 정보를 가져옵니다.
+										        ProductDTO product = productDAO.selectProduct(cart.getCartProductNum());
+										
+										        // 상품 정보를 가져오는 데 실패한 경우 에러 메시지를 출력하고 다음 항목으로 넘어갑니다.
+										        if (product == null) {
+										            out.println("<tr><td colspan='5'>상품 정보를 가져오는데 실패했습니다.</td></tr>");
+										            continue;
+										        }
+										
+										        // 상품의 가격을 가져옵니다.
+										        int productPrice = product.getProductPrice();
+										
+										        // 상품의 총 가격을 계산합니다 (수량 * 가격).
+										        itemTotal = cart.getCartCount() * productPrice;
+										
+										        // 총 금액에 상품의 총 가격을 더합니다.
+										        totalSum += itemTotal;
+										%>
+
                                         <tr>
                                             <td><input type="checkbox" name="selectedCart" value="<%= cart.getCartNum() %>"></td>
                                             <td>상품명: <%= product.getProductName() %></td>
