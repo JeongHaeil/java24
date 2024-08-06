@@ -1,5 +1,5 @@
 <%@page import="xyz.itwill.util.Utility"%>
-<%@page import="xyz.itwill.dto.ReviewDTO"%>
+<%@page import="xyz.itwill.dto.NoticeDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -13,6 +13,8 @@
 
 <%@include file="/security/login_check.jspf" %>
 <%
+p
+
 	//비정상적으로 JSP 문서를 요청한 경우에 대한 응답 처리
 	if(request.getMethod().equals("GET")) {//JSP 문서를 GET 방식으로 요청한 경우
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
@@ -27,7 +29,7 @@
 	//MultipartRequst 객체 생성 - 모든 전달파일이 서버 디렉토리에 자동으로 업로드 처리
 	// => cos.jar 라이브러리 파일이 프로젝트에 빌드 처리되어야만 MultipartRequst 클래스 사용 가능
 	MultipartRequest multipartReques=new MultipartRequest(request, saveDirectory
-			, 20*1024*1024, "utf-8", new DefaultFileRenamePolicy());
+	, 20*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 	
 	//전달값을 반환받아 저장
 	int ref=Integer.parseInt(multipartReques.getParameter("ref"));
@@ -87,7 +89,7 @@
 	}
 	
 	//ReviewDTO 객체를 생성하여 변수값(전달값)으로 필드값 변경
-	ReviewDTO review=new ReviewDTO();
+	NoticeDTO review=new NoticeDTO();
 	review.setReviewNum(nextNum);//시퀸스의 다음값으로 필드값 변경
 	review.setReviewMemberNum(loginMember.getMemberNum());//로그인 사용자의 회원번호로 필드값 변경
 	review.setReviewSubject(reviewSubject);

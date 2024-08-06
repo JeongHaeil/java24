@@ -1,6 +1,6 @@
 <%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
-<%@page import="xyz.itwill.dto.ReviewDTO"%>
+<%@page import="xyz.itwill.dto.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 글번호를 전달받아 REVIEW 테이블에 저장된 하나의 행을 검색하여 HTML 태그에 포함해 응답하는 JSP 문서 --%>
@@ -16,6 +16,8 @@
 <%-- => [글변경] 태그와 [글삭제] 태그는 게시글 작성자 또는 관리자에게만 출력되도록 작성하고
 [답글쓰기] 태그는 로그인 사용자에게만 출력되도록 작성 --%>
 <%
+p
+
 	//비정상적으로 JSP 문서를 요청한 경우에 대한 응답 처리
 	if(request.getParameter("reviewNum") == null) {//전달값이 없는 경우
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
@@ -31,7 +33,7 @@
 	
 	//글번호를 전달받아 REVIEW 테이블에 저장된 하나의 행을 검색하여 ReviewDTO 객체로 반환하는
 	//ReviewDAO 클래스의 메소드 호출
-	ReviewDTO review=ReviewDAO.getDAO().selectReviewByNum(reviewNum);
+	NoticeDTO review=ReviewDAO.getDAO().selectReviewByNum(reviewNum);
 	
 	//비정상적으로 JSP 문서를 요청한 경우에 대한 응답 처리
 	if(review == null) {//검색된 게시글이 없는 경우 
@@ -48,9 +50,9 @@
 	if(review.getReviewStatus() == 2) {//검색된 게시글이 비밀글인 경우
 		//비로그인 사용자이거나 로그인 사용자가 게시글 작성자가 아니고 관리자도 아닌 경우
 		if(loginMember == null || loginMember.getMemberNum() != review.getReviewMemberNum()
-			&& loginMember.getMemberAuth() != 9) {
-			request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
-			return;
+	&& loginMember.getMemberAuth() != 9) {
+	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
+	return;
 		}
 	}
 	

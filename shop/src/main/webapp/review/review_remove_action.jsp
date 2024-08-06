@@ -1,6 +1,6 @@
 <%@page import="java.io.File"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
-<%@page import="xyz.itwill.dto.ReviewDTO"%>
+<%@page import="xyz.itwill.dto.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 글번호를 전달받아 REVIEW 테이블에 저장된 행에서 글상태를 [0]으로 변경하여 삭제 처리하고
@@ -9,6 +9,8 @@
 <%-- => 로그인 사용자가 게시글 작성자이거나 관리자인 경우에만 JSP 문서 요청 가능 --%>
 <%@include file="/security/login_check.jspf" %>
 <%
+p
+
 	//비정상적으로 JSP 문서를 요청한 경우에 대한 응답 처리
 	if(request.getParameter("reviewNum") == null) {//전달값이 없는 경우
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
@@ -24,7 +26,7 @@
 	
 	//글번호를 전달받아 REVIEW 테이블에 저장된 하나의 행을 검색하여 ReviewDTO 객체로 반환하는
 	//ReviewDAO 클래스의 메소드 호출
-	ReviewDTO review=ReviewDAO.getDAO().selectReviewByNum(reviewNum);
+	NoticeDTO review=ReviewDAO.getDAO().selectReviewByNum(reviewNum);
 	
 	//비정상적으로 JSP 문서를 요청한 경우에 대한 응답 처리
 	if(review == null) {//검색된 게시글이 없는 경우 

@@ -1,7 +1,7 @@
-﻿<%@page import="java.util.Date"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="xyz.itwill.dto.MemberDTO"%>
-<%@page import="xyz.itwill.dto.ReviewDTO"%>
+<%@page import="xyz.itwill.dto.NoticeDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,6 +19,8 @@
 <%-- 게시글의 [글제목]을 클릭한 경우 [/review/review_detail.jsp] 문서를 요청하여 페이지 이동
 - 글번호, 페이지번호, 게시글갯수, 조회대상, 조회단어 전달 --%>
 <%
+p
+
 	//게시글 조회기능에 필요한 전달값(조회대상과 조회단어)을 반환받아 저장
 	String search=request.getParameter("search");//조회대상
 	if(search == null) {//전달값이 없는 경우 - 조회기능을 사용하지 않은 경우
@@ -70,7 +72,7 @@
 	//페이징 관련 정보(시작행번호, 종료행번호)와 게시글 조회기능 관련 정보(조회대상과 조회단어)를
 	//전달받아 REVIEW 테이블에 저장된 행에서 조회정보가 포함된 행을 페이징 처리로 검색하여
 	//List 객체를 반환하는 ReviewDAO 클래스의 메소드 호출
-	List<ReviewDTO> reviewList=ReviewDAO.getDAO().selectReviewList(startRow, endRow, search, keyword);
+	List<NoticeDTO> reviewList=ReviewDAO.getDAO().selectReviewList(startRow, endRow, search, keyword);
 	
 	//세션에 저장된 권한 관련 정보가 저장된 속성값을 객체로 반환받아 저장
 	// => 로그인 사용자에게만 글쓰기 권한 제공
@@ -150,20 +152,29 @@ td {
 <h1>제품후기</h1>
 <div id="review_list">
 	<%-- 검색된 게시글의 총갯수 출력 --%>
-	<div id="review_title">제품후기(<%=totalReview %>)</div>
+	<div id="review_title">제품후기(<%=t(totalRevie%>)</div>
 	
 	<div style="text-align: right;">
 		게시글갯수 : 
 		<select id="pageSize">
-			<option value="10" <% if(pageSize==10) { %> selected <% } %>>&nbsp;10개&nbsp;</option>	
-			<option value="20" <% if(pageSize==20) { %> selected <% } %>>&nbsp;20개&nbsp;</option>	
-			<option value="50" <% if(pageSize==50) { %> selected <% } %>>&nbsp;50개&nbsp;</option>	
-			<option value="100" <% if(pageSize==100) { %> selected <% } %>>&nbsp;100개&nbsp;</option>	
+			<option value="10" <%p
+ if(pageSize==10)%> selected <%%>>&nbsp;10개&nbsp;</option>	
+			<option value="20" <%p
+ if(pageSize==20)%> selected <%%>>&nbsp;20개&nbsp;</option>	
+			<option value="50" <%p
+ if(pageSize==50)%> selected <%%>>&nbsp;50개&nbsp;</option>	
+			<option value="100" <%p
+ if(pageSize==100)%> selected <%%>>&nbsp;100개&nbsp;</option>	
 		</select>
 		&nbsp;&nbsp;&nbsp;
-		<% if(loginMember != null) {//로그인 사용자인 경우 %>
+		<%
+		p
+		 if(loginMember != null) {//로그인 사용자인 경
+		%>
 			<button type="button" id="writeBtn">글쓰기</button>
-		<% } %>	
+		<%
+		p
+		%>	
 	</div>
 	
 	<%-- 검색된 게시글 목록 출력 --%>	
@@ -176,13 +187,22 @@ td {
 			<th width="200">작성일</th>
 		</tr>
 		
-		<% if(totalReview == 0) {//검색된 게시글이 없는 경우 %>
+		<%
+				p
+				 if(totalReview == 0) {//검색된 게시글이 없는 경
+				%>
 			<tr>
 				<td colspan="5">검색된 게시글이 없습니다.</td>
 			</tr>
-		<% } else { %>
+		<%
+		p
+		 } else
+		%>
 			<%-- List 객체의 요소값(ReviewDTO 객체)을 차례대로 제공받아 변수에 저장하는 반복문 --%>
-			<% for(ReviewDTO review : reviewList) { %>
+			<%
+			p
+			 for(NoticeDTO review : reviewList)
+			%>
 			<tr>
 				<%-- 게시글의 일련번호 출력 --%>
 				<td><%=displayNum %></td>
