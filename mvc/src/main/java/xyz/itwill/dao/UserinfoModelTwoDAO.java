@@ -12,6 +12,7 @@ import xyz.itwill.dto.UserinfoDTO;
 public class UserinfoModelTwoDAO extends JdbcDAO  {
 	private static UserinfoModelTwoDAO _dao;
 	
+	
 	private UserinfoModelTwoDAO() {
 		// TODO Auto-generated constructor stub
 	}
