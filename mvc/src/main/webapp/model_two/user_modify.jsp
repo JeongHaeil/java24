@@ -1,19 +1,16 @@
-﻿
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
 <%-- => request 객체의 속성값을 반환받아 입력태그의 입력값으로 응답 처리 --%>
 <%-- => [수정] 태그를 클릭한 경우 [/modify.do] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
 <%-- => [목록] 태그를 클릭한 경우 [/list.do] 문서를 요청하여 페이지 이동 --%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>MVC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css">
+
 <script language="JavaScript">
 function userModify() {
 	if ( f.name.value == "" ) {
@@ -21,7 +18,7 @@ function userModify() {
 		f.name.focus();
 		return false;
 	}
-	f.action = <c:
+	f.action = "<%=request.getContextPath() %>/modify.do";
 	f.submit();
 }
 </script>
@@ -74,7 +71,7 @@ function userModify() {
 			<td width=100 align=center bgcolor="E6ECDE" height="22">회원등급</td>
 			<td width=490 bgcolor="ffffff" style="padding-left:10px;">
 				<select name="auth">
-					<option value="1" <% if(userinfo.getAuth() == 1) { %>selected<% } %>>일반회원</option>
+					<option value="1"   <% if(userinfo.getAuth() == 1) { %>selected<% } %>>일반회원</option>
 					<option value="9" <% if(userinfo.getAuth() == 9) { %>selected<% } %>>관리자</option>
 				</select>
 			</td>
