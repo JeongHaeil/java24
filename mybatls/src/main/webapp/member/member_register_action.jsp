@@ -1,4 +1,3 @@
-<%@page import="xyz.itwill.dto.MyMemberDTO"%>
 <%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
 <%@page import="xyz.itwill.dto.MyMember"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +10,7 @@
 	String phone=request.getParameter("phone");
 	String email=request.getParameter("email");
 	
-	MyMemberDTO member=new MyMemberDTO();
+	MyMember member=new MyMember();
 	member.setId(id);
 	member.setName(name);
 	member.setPhone(phone);
