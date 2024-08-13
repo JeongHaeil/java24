@@ -10,6 +10,7 @@ import xyz.itwill.mapper.MyReplyMapper;
 
 public class MyReplyDAO extends AbstractSession {
 	private static MyReplyDAO _dao;
+	private int commentNo;
 	
 	private MyReplyDAO() {
 		// TODO Auto-generated constructor stub

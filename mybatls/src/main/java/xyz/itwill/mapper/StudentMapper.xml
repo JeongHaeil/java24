@@ -19,7 +19,7 @@
 		select no, name, phone, address, birthday from student order by no
 	</select>
 	-->	
-	<select id="selectStudentList" resultType="Student">
+	<select id="selectStudentList" resultType="StudentDTO">
 		select no, name, phone, address, birthday from student order by no
 	</select>
 </mapper>
